@@ -1,0 +1,46 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://terrain/data.hterrain" type="Resource" id=1]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=2]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/PNG/pebblestone_textures_6-2K/2K-pebblestone_6-diffuse.jpg" type="Texture" id=4]
+[ext_resource path="res://Sprites/PNG/pebblestone_textures_6-2K/2K-pebblestone_6-normal.jpg" type="Texture" id=5]
+[ext_resource path="res://terrain_slot0_normal_roughness.packed_tex" type="Texture" id=6]
+[ext_resource path="res://terrain_slot0_albedo_bump.packed_tex" type="Texture" id=7]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+mode = 0
+textures = [ [ ExtResource( 7 ), ExtResource( 4 ) ], [ ExtResource( 6 ), ExtResource( 5 ) ] ]
+
+[node name="LevelTerrain" type="Spatial"]
+
+[node name="HTerrain" type="Spatial" parent="."]
+script = ExtResource( 3 )
+_terrain_data = ExtResource( 1 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 1 )
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 117.234, 20.057, 88.0384 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.536856, -0.686596, -0.490278, -0.634316, -0.711639, 0.302016, -0.556263, 0.148852, -0.817566, -25.4055, 85.8067, -58.0736 )
+light_color = Color( 0.831373, 0.74902, 0.545098, 1 )
+light_energy = 3.365
+light_indirect_energy = 2.53
+
+[node name="Enemy" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40.599, 9.18377, 90.9983 )

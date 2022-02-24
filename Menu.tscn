@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Menu.gd" type="Script" id=1]
+[ext_resource path="res://Title.gd" type="Script" id=2]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 4.0
+margin_right = 2.0
+margin_bottom = 4.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.439
+anchor_top = 0.5
+anchor_right = 0.587
+anchor_bottom = 0.5
+margin_left = -20.5
+margin_top = -22.0
+margin_right = 20.5
+margin_bottom = 22.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+margin_right = 192.0
+margin_bottom = 20.0
+text = "Start"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 192.0
+margin_bottom = 44.0
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -44.0
+margin_top = 86.0
+margin_right = 64.0
+margin_bottom = 115.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="VBoxContainer2"]
+margin_right = 108.0
+margin_bottom = 14.0
+text = "BACKROOMS"
+align = 1
+autowrap = true
+script = ExtResource( 2 )
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer2/Title" to="." method="_on_Title_mouse_entered"]
